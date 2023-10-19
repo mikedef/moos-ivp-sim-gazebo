@@ -16,7 +16,7 @@ A hello world mission to provide basic control of a simulated vessel in Gazebo w
   * Enter IP address:  `enter`
   * Enter Port number: `9001` `enter`
 * pMarineViewer
-  * DEPLOY in pMarineViewer
+  * hit `DEPLOY` in pMarineViewer
 
 
 

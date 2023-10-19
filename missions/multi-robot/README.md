@@ -20,4 +20,4 @@ A hello world mission to provide basic control of a simulated vessel in Gazebo w
       * Asset 1 Port: 9001
       * Asset 2 Port: 9002
 * pMarineViewer                                                                                         
-  * DEPLOY in pMarineViewer 
+  * hit `DEPLOY` in pMarineViewer 
