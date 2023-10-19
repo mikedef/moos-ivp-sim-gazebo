@@ -1,0 +1,10 @@
+// Generated with Anaxi Tile Downloader
+// cmd= tsdl.py 42.361907 -71.073054 42.352170 -71.101432 18 \
+// https://tile.openstreetmap.org/%zoom%/%xTile%/%yTile%.png
+
+lat_north = 42.36260292171997
+lat_south = 42.35042512243457
+lon_east  = -71.070556640625
+lon_west  = -71.10214233398438
+datum_lat = 42.358436
+datum_lon = -71.087448

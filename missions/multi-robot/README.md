@@ -15,8 +15,8 @@ A hello world mission to provide basic control of a simulated vessel in Gazebo w
   * $ ./launch.sh                                                                                       
 * Terminal 3                                                                                            
   * $ uPokeDB WPT_REQUEST=true
-    * Enter IP address:  <enter>	
-    * Enter Port number: <9001> <enter>
+    * Enter IP address:  `enter`	
+    * Enter Port number: `9001` `enter`
       * Asset 1 Port: 9001
       * Asset 2 Port: 9002
 * pMarineViewer                                                                                         
