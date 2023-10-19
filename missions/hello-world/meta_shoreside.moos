@@ -1,0 +1,175 @@
+//*******************************************************
+// ShoreSide Configuration File
+
+ServerHost = localhost
+ServerPort = $(SPORT)  //9000
+Community  = $(SNAME)  //shoreside
+
+//MIT Sailing                                                                                           
+LatOrigin = 42.358436                                                                                   
+LongOrigin = -71.087448
+  
+//--------------------------------------------------------
+Processconfig = ANTLER
+{
+  MSBetweenLaunches = 100
+
+  Run = MOOSDB             @ NewConsole = false
+  Run = pMarineViewer      @ NewConsole = false
+  Run = pLogger            @ NewConsole = false
+  Run = pShare             @ NewConsole = false
+  Run = pHostInfo          @ NewConsole = false
+  Run = uFldShoreBroker    @ NewConsole = false
+  Run = uFldNodeComms      @ NewConsole = false
+	Run = pRealm        @ NewConsole = false
+
+}
+
+//#include plug_pShare.moos                                                           
+#include plug_pHostInfo.moos
+
+
+//---------------------------------------------------------                                             
+// pShare Config Block  (Created from Plugin)                                                           
+                                                                                                        
+ProcessConfig = pShare                                                                                  
+{                                                                                                       
+  AppTick    = 2                                                                                        
+  CommsTick  = 2                                                                                        
+                                                                                                        
+  input = route =  localhost:$(SHARE_LISTEN)                                                            
+	//output = src_name=NODE_REPORT_*, dest_name=TRACK_, route=localhost:9301
+                                                                                                        
+} 
+//--------------------------------------------------
+// uFldShoreBroker Configuration Block
+
+ProcessConfig = uFldShoreBroker
+{
+  AppTick       = 1
+  CommsTick     = 1
+
+  // Note: [QBRIDGE = FOO]  is shorthand for                    
+  //       [BRIDGE = src=FOO_$V,  alias=FOO] and                
+  //       [BRIDGE = src=FOO_ALL, alias=FOO]
+
+	auto_bridge_appcast = true
+	
+  QBRIDGE  = DEPLOY, RETURN, STATION, NODE_REPORT, NODE_MESSAGE, SEARCH_SPLIT
+  QBRIDGE  = MOOS_MANUAL_OVERRIDE, APPCAST_REQ
+	QBRIDGE  = RESUPPLY, DEPLOY_ALL, FOOBAR
+	QBRIDGE  = CONTACT_INFO
+	
+	//BRIDGE   = src=DEPLOY_$V, alias=DEPLOY
+  BRIDGE   = src=UP_LOITER_$N, alias=UP_LOITER
+  BRIDGE   = src=DRIFT_VECTOR_ADD, alias=DRIFT_VECTOR_ADD
+	//BRIDGE   = src=GRID_VIEW_DELTA
+}
+
+//--------------------------------------------------
+// uFldNodeComms Configuration Block
+
+ProcessConfig = uFldNodeComms
+{
+  AppTick       = 2
+  CommsTick     = 2
+
+//           COMMS_RANGE = 150
+//        CRITICAL_RANGE = 25
+//      MIN_MSG_INTERVAL = 20
+//        MAX_MSG_LENGTH = 1000
+//                GROUPS = true
+	//  VIEW_NODE_RPT_PULSES = false
+
+	// No artificial limits, hopefully we're smart enough to throttle ourselves                         
+  min_msg_interval = 0                                                                                  
+  max_msg_length = 0                                                                                    
+  comms_range = nolimit
+	view_node_rpt_pulses = false
+}
+
+//--------------------------------------------------
+// uMACView Configuration Block
+
+ProcessConfig = uMACView
+{
+  AppTick       = 3
+  CommsTick     = 3
+
+  nodes_font_size    = medium
+  procs_font_size    = medium
+  appcast_font_size = small
+  refresh_mode       = events
+}
+
+//--------------------------------------------------
+// pLogger Configuration Block
+
+ProcessConfig = pLogger
+{
+  AppTick       = 10
+  CommsTick     = 10
+  
+  File          = LOG_SHORESIDE
+  PATH          = ./
+  AsyncLog      = true
+  FileTimeStamp = true
+
+  // Log it all!!!!!
+  WildCardLogging = true 
+}
+
+// -------------------------------------------------------------
+// pMarineViewer Config block
+ProcessConfig = pMarineViewer                                                                           
+{                                                                                                       
+  AppTick    = 4                                                                                        
+  CommsTick  = 4                                                                                        
+                                                                                                        
+  tiff_file              = ../../scripts/mit/MIT_SP.tif                                      
+  set_pan_x            = -90                                                                            
+  set_pan_y            = -280                                                                           
+  zoom                 = 0.65                                                                           
+  vehicle_shape_scale  = 1.5                                                                            
+  hash_delta           = 50                                                                             
+  hash_shade           = 0.22                                                                           
+  hash_viewable        = false                                             
+                                                                                                        
+																																																				  trails_point_size   = 1
+
+
+                                                                                                        
+  // Appcast configuration                                                                              
+  appcast_height       = 75                                                                             
+  appcast_width        = 30                                                                             
+  appcast_viewable     = true                                                                           
+  appcast_color_scheme = indigo                                                                         
+  nodes_font_size      = xlarge                                                                         
+  procs_font_size      = xlarge                                                                         
+  appcast_font_size    = large                                                                          
+                                                                                                        
+  right_context[return] = DEPLOY=true                                                                   
+  right_context[return] = MOOS_MANUAL_OVERRIDE=false                                                    
+  right_context[return] = RETURN=false                                                                  
+                                                                                                        
+  scope  = RETURN                                                                                       
+  scope  = WPT_STAT                                                                                     
+  scope  = VIEW_SEGLIST                                                                                 
+  scope  = VIEW_POINT                                                                                   
+  scope  = VIEW_POLYGON                                                                                 
+  scope  = MVIEWER_LCLICK                                                                               
+  scope  = MVIEWER_RCLICK
+	scope  = VIEW_GRID
+	scope  = VIEW_GRID_DELTA
+                                                                                                        
+  button_one = DEPLOY # DEPLOY=true # DEPLOY_ALL=true # RESUPPLY=true 
+  button_one = MOOS_MANUAL_OVERRIDE_ALL=false # RETURN_ALL=false                                        
+  button_two = RETURN # RETURN_ALL=true # DEPLOY_ALL=false # 
+	//button_three = DEPLOY_PREY # DEPLOY_PREY=true # MOOS_MANUAL_OVERRIDE_PREY=false
+	//button_four = SEARCH # DEPLOY_ALL=true # DEPLOY=true # MOOS_MANUAL_OVERRIDE_ALL=false # SEARCH_POLY=true
+  
+  action  = UPDATES_RETURN=speed=2.0                                                       
+}                                                                                         
+                 
+
+
