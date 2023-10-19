@@ -31,17 +31,16 @@ ProcessConfig = ANTLER
   Run = pMarinePIDV22 @ NewConsole = false
 	//Run = uSimMarineV22 @ NewConsole = false
 	Run = pContactMgrV20 @NewConsole = false
-	Run = iGazeboVessel @ NewConsole = false
 
 	Run = pRealm	      @ NewConsole = false
 	Run = pShare         @NewConsole = false
 	Run = uFldNodeBroker @NewConsole = false
 	Run = uFldMessageHandler @NewConsole = false
 
-	// PUNCH
+	// Gazebo
 	Run = iMOOSGateway  @ NewConsole = false
-  Run = pParseGateway @ NewConsole = false //Update app for PUNCH
-	
+  Run = pParseGateway @ NewConsole = false
+	Run = iGazeboVessel @ NewConsole = false	
 
    
 	 }

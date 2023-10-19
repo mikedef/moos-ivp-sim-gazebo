@@ -58,25 +58,6 @@ Behavior=BHV_StationKeep
          visual_hints = vertex_color = red         // default
 }
 
-Behavior = BHV_ConstantHeading
- {
-   // General Behavior Parameters
-   // ---------------------------
-   name         = const_hdg            // example
-   pwt          = 200                  // default
-   condition    = MODE==STATION-KEEPING
-	 condition    = KEEP_HDG=true
-   updates      = CONST_HDG_UPDATES    // example
-
-   // Parameters specific to this behavior
-   // ------------------------------------
-              basewidth = 10           // default
-               duration = 60            // default
-   heading_mismatch_var = HDG_DIFF     // example
-              peakwidth = 10           // default
-            summitdelta = 25           // default
- }	
-
 //----------------------------------------------
 Behavior = BHV_Waypoint
 {
