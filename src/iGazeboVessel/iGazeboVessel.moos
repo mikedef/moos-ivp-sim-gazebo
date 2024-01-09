@@ -10,11 +10,11 @@ ProcessConfig = iGazeboVessel
 	rfactor = 1.0
 
 	// Max Rudder (0,180]
-	max_rudder = 100.0
-
+	max_rudder = 30.0
+	
 	// Min/Max Thrust
-	max_thrust = 100.0
-	min_thrust = -100.0
+	max_thrust = 1.0
+	min_thrust = -1.0
 
 	// Drive Mode: ("normal"|"aggro"|"rotate"|"direct")
 	drive_mode = normal

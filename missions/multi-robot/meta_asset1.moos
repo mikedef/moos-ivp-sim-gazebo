@@ -236,8 +236,8 @@ ProcessConfig = pNodeReporter
                                                                                                         
   // Yaw PID controller                                                                                 
   YAW_PID_KP             = 0.1 // 0.07
-  YAW_PID_KD             = 0.0 // 
-  YAW_PID_KI             = 0.02 // 0.02
+  YAW_PID_KD             = 0.05 // 0.00
+  YAW_PID_KI             = 0.05 // 0.02
   YAW_PID_INTEGRAL_LIMIT = 0.07
 	YAW_PID_KI_LIMIT = 0.2
                                                                                                         

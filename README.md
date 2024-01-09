@@ -9,3 +9,9 @@ This repo contains the basic autonomy interface for controlling a simulated vess
   * pParseGateway
     * A basic parsing application for ingesting simulated vessel sensor data from Gazebo
     * Copy into your project (moos-ivp-`your-project`/src) and edit as needed
+
+# Missions
+  * hello-world
+    * Example mission to explore a single vessel in Gazebo controlled by a single MOOS communitys
+  * multi-robot
+    * Example mission to explore controlling two vessels in Gazebo using MOOS-IvP

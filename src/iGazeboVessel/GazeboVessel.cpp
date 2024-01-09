@@ -1,5 +1,5 @@
 /************************************************************/
-/*    NAME:                                               */
+/*    NAME: Michael DeFilippo                                              */
 /*    ORGN: MIT, Cambridge MA                               */
 /*    FILE: GazeboVessel.cpp                                        */
 /*    DATE: 2023-10-17                             */                                                   
