@@ -2,9 +2,13 @@
 /*    NAME: Michael DeFilippo                                              */
 /*    ORGN: MIT, Cambridge MA                               */
 /*    FILE: GazeboVessel.cpp                                        */
-/*    DATE: 2023-10-17                             */                                                   
-/*    NOTE: Application to control simulated vessel in Gazebo */                                        
-/*          Based on the iM300 application (Tyler Paine) 
+/*    DATE: 2023-10-17                             */
+/*    NOTE: Application to control simulated vessel in Gazebo */
+/*          Based on the iM300 application (Tyler Paine)   */
+/* Copyrght MIT and author/s of software.                      */
+/* This is unreleased BETA code. no permission is granted or   */
+/* implied to use, copy, modify, and distribute this software  */
+/* except by the author(s), or those designated by the author. */
 /************************************************************/
 
 #include <iterator>

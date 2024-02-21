@@ -1,13 +1,14 @@
-/***************************************************************/                                       
-/*    NAME: Michael DeFilippo                                  */                                       
-/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */                                       
-/*    FILE: ParseGateway.cpp                                   */                                       
+/***************************************************************/
+/*    NAME: Michael DeFilippo                                  */
+/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */
+/*    FILE: ParseGateway.cpp                                   */
 /*    DATE: 2022-11-14                                         */
 /*    NOTE: Basic parsing application for ingesting simulated  */
 /*          vessel sensor data from Gazebo                     */
-/* This is unreleased BETA code. no permission is granted or   */                                       
-/* implied to use, copy, modify, and distribute this software  */                                       
-/* except by the author(s), or those designated by the author. */                                       
+/* Copyrght MIT and author/s of software.                      */
+/* This is unreleased BETA code. no permission is granted or   */
+/* implied to use, copy, modify, and distribute this software  */
+/* except by the author(s), or those designated by the author. */
 /***************************************************************/
 
 #include <iterator>
@@ -43,12 +44,12 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
   for(p=NewMail.begin(); p!=NewMail.end(); p++) {
     CMOOSMsg &msg = *p;
     string key    = msg.GetKey();
-    string sval  = msg.GetString(); 
+    string sval  = msg.GetString();
 
 #if 0 // Keep these around just for template
     string comm  = msg.GetCommunity();
     double dval  = msg.GetDouble();
-    string sval  = msg.GetString(); 
+    string sval  = msg.GetString();
     string msrc  = msg.GetSource();
     double mtime = msg.GetTime();
     bool   mdbl  = msg.IsDouble();
@@ -56,7 +57,7 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
 #endif
 
     // Handle Gazebo Vessel Node Report
-    if(key == "ASSET_NODE_REPORT_GAZEBO"){  
+    if(key == "ASSET_NODE_REPORT_GAZEBO"){
       handleGazeboNodeReport(sval);
     }
 
@@ -73,7 +74,7 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
     else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
        reportRunWarning("Unhandled Mail: " + key);
    }
-	
+
    return(true);
 }
 
@@ -104,7 +105,7 @@ bool ParseGateway::Iterate()
 //
 void ParseGateway::handleGazeboNodeReport(std::string report)
 {
-  // Parse data 
+  // Parse data
   vector<string> str_vector = parseStringQ(report, ',');
   string name = tokStringParse(report, "NAME", ',',  '=');
   m_lat = stod( tokStringParse(report, "LAT", ',',  '=') );
@@ -116,7 +117,7 @@ void ParseGateway::handleGazeboNodeReport(std::string report)
   m_pitch = stod( tokStringParse(report, "PITCH", ',',  '=') );
 
   m_Geodesy.LatLong2LocalUTM(m_lat, m_lon, m_nav_y, m_nav_x);
-    
+
   m_last_rcvd = report;
   m_last_node_report = str_vector[0];
 
@@ -132,7 +133,7 @@ void ParseGateway::handleGazeboNodeReport(std::string report)
   Notify("NAV_PITCH", m_pitch);
   Notify("NAV_X", m_nav_x);
   Notify("NAV_Y", m_nav_y);
-  
+
 }
 
 //---------------------------------------------------------
@@ -214,7 +215,7 @@ bool ParseGateway::OnStartUp()
   }
 
   GeodesySetup();
-  registerVariables();	
+  registerVariables();
   return(true);
 }
 
@@ -255,14 +256,14 @@ void ParseGateway::registerVariables()
   Register("ASSET_NODE_REPORT_GAZEBO", 0);
   Register("WAYPOINT_UPDATE", 0);
   Register("STATION_KEEP_UPDATE", 0);
-  
+
 }
 
 
 //------------------------------------------------------------
 // Procedure: buildReport()
 
-bool ParseGateway::buildReport() 
+bool ParseGateway::buildReport()
 {
   m_msgs << "============================================" << endl;
   m_msgs << "File:                                       " << endl;

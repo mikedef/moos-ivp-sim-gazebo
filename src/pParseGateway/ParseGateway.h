@@ -1,19 +1,20 @@
-/***************************************************************/                                       
-/*    NAME: Michael DeFilippo                                  */                                       
-/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */                                       
-/*    FILE: ParseGateway.h                                     */                                       
-/*    DATE: 2022-11-14                                         */                                       
-/* This is unreleased BETA code. no permission is granted or   */                                       
-/* implied to use, copy, modify, and distribute this software  */                                       
-/* except by the author(s), or those designated by the author. */                                       
-/***************************************************************/ 
+/***************************************************************/
+/*    NAME: Michael DeFilippo                                  */
+/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */
+/*    FILE: ParseGateway.h                                     */
+/*    DATE: 2022-11-14                                         */
+/* Copyrght MIT and author/s of software.                      */
+/* This is unreleased BETA code. no permission is granted or   */
+/* implied to use, copy, modify, and distribute this software  */
+/* except by the author(s), or those designated by the author. */
+/***************************************************************/
 
 #ifndef ParseGateway_HEADER
 #define ParseGateway_HEADER
 
 #include "MOOS/libMOOS/Thirdparty/AppCasting/AppCastingMOOSApp.h"
 #include "MOOS/libMOOSGeodesy/MOOSGeodesy.h"
-#include "XYConvexGrid.h"                                                                               
+#include "XYConvexGrid.h"
 #include "XYFormatUtilsConvexGrid.h"
 
 class ParseGateway : public AppCastingMOOSApp
@@ -22,13 +23,13 @@ class ParseGateway : public AppCastingMOOSApp
    ParseGateway();
    ~ParseGateway();
 
- protected: // Standard MOOSApp functions to overload  
+ protected: // Standard MOOSApp functions to overload
    bool OnNewMail(MOOSMSG_LIST &NewMail);
    bool Iterate();
    bool OnConnectToServer();
-   bool OnStartUp();  
+   bool OnStartUp();
 
- protected: // Standard AppCastingMOOSApp function to overload 
+ protected: // Standard AppCastingMOOSApp function to overload
    bool buildReport();
 
 protected:
@@ -37,7 +38,7 @@ protected:
   void handleGazeboNodeReport(std::string report);
   void handleWptUpdate(std::string wpt_update);
   void handleStationingUpdate(std::string station_update);
-  
+
 
  private: // Configuration variables
 
@@ -73,4 +74,4 @@ protected:
 
 };
 
-#endif 
+#endif
